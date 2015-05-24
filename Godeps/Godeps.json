@@ -1,0 +1,19 @@
+{
+	"ImportPath": "github.com/philippkoelmel/bitgrid-template-go",
+	"GoVersion": "go1.4.2",
+	"Deps": [
+		{
+			"ImportPath": "github.com/gedex/inflector",
+			"Rev": "8c0e57904488c554ab26caec525db5c92b23f051"
+		},
+		{
+			"ImportPath": "github.com/julienschmidt/httprouter",
+			"Rev": "8c199fb6259ffc1af525cc3ad52ee60ba8359669"
+		},
+		{
+			"ImportPath": "github.com/manyminds/api2go",
+			"Comment": "0.2-9-g68d2cca",
+			"Rev": "68d2cca1239a9e347c4d30e5f960b0f0da6959ba"
+		}
+	]
+}
