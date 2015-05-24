@@ -1,0 +1,9 @@
+bitgridtemplatego:
+  build: .
+  links:
+   - mongo
+  ports:
+   - "8080:31415"
+mongo:
+  image: mongo
+  
