@@ -228,6 +228,8 @@ type userResource struct {
 func (s *userResource) FindAll(r api2go.Request) (interface{}, error) {
 	var users []User
 
+	fmt.Println("list all users")
+
 	for _, value := range s.users {
 		users = append(users, value)
 	}
