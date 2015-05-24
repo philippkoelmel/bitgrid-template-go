@@ -37,13 +37,16 @@ Remove a sweet
 package main
 
 import (
+	"log"
 	"errors"
 	"fmt"
-	"sort"
-	"strconv"
 	"github.com/julienschmidt/httprouter"
 	"github.com/manyminds/api2go"
 	"github.com/manyminds/api2go/jsonapi"
+	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
+	"sort"
+	"strconv"
 )
 
 import "net/http"
@@ -420,7 +423,36 @@ func (c *chocolateResource) Update(obj interface{}, r api2go.Request) error {
 	return c.storage.Update(choc)
 }
 
+type Person struct {
+	Name  string
+	Phone string
+}
+
 func main() {
+	session, err := mgo.Dial("mongo")
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+
+	// Optional. Switch the session to a monotonic behavior.
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("test").C("people")
+	err = c.Insert(&Person{"Ale", "+55 53 8116 9639"},
+		&Person{"Cla", "+55 53 8402 8510"})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	result := Person{}
+	err = c.Find(bson.M{"name": "Ale"}).One(&result)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("Phone:", result.Phone)
+
 	api := api2go.NewAPIWithBaseURL("v0", "http://localhost:31415")
 	users := make(map[string]User)
 	chocStorage := ChocolateStorage{chocolates: make(map[string]Chocolate), idCount: 1}

@@ -14,6 +14,11 @@
 			"ImportPath": "github.com/manyminds/api2go",
 			"Comment": "0.2-9-g68d2cca",
 			"Rev": "68d2cca1239a9e347c4d30e5f960b0f0da6959ba"
+		},
+		{
+			"ImportPath": "gopkg.in/mgo.v2",
+			"Comment": "r2015.01.24",
+			"Rev": "c6a7dce14133ccac2dcac3793f1d6e2ef048503a"
 		}
 	]
 }
